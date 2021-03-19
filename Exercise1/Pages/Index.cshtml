@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Model.Name</h1>
+    <form method="post">
+        <container>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <span asp-validation-for="Address.Street" class="text-danger"></span> <br />
+                    <label asp-for="Address.Street"></label> <br />
+                    <input asp-for="Address.Street" /><br />
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <span asp-validation-for="Address.Number" class="text-danger"></span> <br />
+                    <label asp-for="Address.Number"></label> <br />
+                    <input asp-for="Address.Number" /><br />
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <span asp-validation-for="Address.ZipCode" class="text-danger"></span> <br />
+                    <label asp-for="Address.ZipCode"></label> <br />
+                    <input asp-for="Address.ZipCode" /><br />
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <span asp-validation-for="Address.City" class="text-danger"></span> <br />
+                    <label asp-for="Address.City"></label> <br />
+                    <input asp-for="Address.City" /><br />
+                </div>
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary mb-2">Zatwierdź</button>
+        </container>
+    </form>
+</div>
