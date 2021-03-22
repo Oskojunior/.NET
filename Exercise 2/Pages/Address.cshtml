@@ -1,0 +1,38 @@
+﻿@page
+@model Exercise_2.Pages.AddressModel
+@{
+    ViewData["Title"] = "List";
+}
+
+
+@{ if (Model.Lista.Count() > 0)
+    {
+        <p>Dane zapisane w sesji</p>
+        <br />
+        foreach (Models.Address a in Model.Lista)
+        {
+            <p>
+                @Html.DisplayNameFor(model => Model.Address.Street):
+                @a.Street
+            </p>
+            <p>
+                @Html.DisplayNameFor(model => Model.Address.City):
+                @a.City
+            </p>
+            <p>
+                @Html.DisplayNameFor(model => Model.Address.Number):
+                @a.Number
+            </p>
+            <p>
+                @Html.DisplayNameFor(model => Model.Address.ZipCode):
+                @a.ZipCode
+            </p>
+            <br />
+        }
+    }
+    else
+    {
+        <p>Brak Danych do wyświetlenia</p>
+    }
+}
+
