@@ -18,7 +18,7 @@ namespace FizzBuzz_ver._2.Models
             if (this.Number % 3 == 0 && this.Number % 5 == 0)
                 this.Outcome = "Otrzymano: FizzBuzz";
             else if (this.Number % 3 == 0)
-                this.Outcome = "'Otrzymano: Fizz";
+                this.Outcome = "Otrzymano: Fizz";
             else if (this.Number % 5 == 0)
                 this.Outcome = "Otrzymano: Buzz";
             else
