@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FIzzBuzz_Ext.Data;
 using FIzzBuzz_Ext.Models;
+using Microsoft.AspNetCore.Identity;
+using FIzzBuzz_Ext.Areas.Identity.Data;
 
 namespace FIzzBuzz_Ext.Pages.DatabaseLook
 {
     public class DeleteModel : PageModel
     {
         private readonly FIzzBuzz_Ext.Data.FizzBuzzContext _context;
+        private readonly UserManager<FIzzBuzz_ExtUser> _userManager;
 
-        public DeleteModel(FIzzBuzz_Ext.Data.FizzBuzzContext context)
+        public DeleteModel(FIzzBuzz_Ext.Data.FizzBuzzContext context, UserManager<FIzzBuzz_ExtUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -31,7 +35,7 @@ namespace FIzzBuzz_Ext.Pages.DatabaseLook
 
             FizzBuzz = await _context.FizzBuzz.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (FizzBuzz == null)
+            if (FizzBuzz == null || FizzBuzz.Author == null || !(FizzBuzz.Author.Equals(_userManager.GetUserName(User))))
             {
                 return NotFound();
             }

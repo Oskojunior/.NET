@@ -1,6 +1,12 @@
 ﻿@page
 @model FIzzBuzz_Ext.Pages.DatabaseLook.IndexModel
 
+@using Microsoft.AspNetCore.Identity
+@using FIzzBuzz_Ext.Areas.Identity.Data
+
+@inject SignInManager<FIzzBuzz_ExtUser> SignInManager
+@inject UserManager<FIzzBuzz_ExtUser> UserManager
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -25,25 +31,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.FizzBuzz) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Outcome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.FizzBuzz)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Outcome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    @if (UserManager.GetUserName(User).Equals(item.Author))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

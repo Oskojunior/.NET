@@ -11,6 +11,8 @@ namespace FIzzBuzz_Ext.Models
     public class FizzBuzz
     {
         public int Id { get; set; }
+        [MaxLength(256)]
+        public string Author { get; set; }
 
         [Range(1, 1000), Required(ErrorMessage = "Number not found")]
         public int Number { get; set; }

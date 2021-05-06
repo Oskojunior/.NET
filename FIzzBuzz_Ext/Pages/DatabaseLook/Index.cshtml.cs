@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FIzzBuzz_Ext.Data;
 using FIzzBuzz_Ext.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FIzzBuzz_Ext.Pages.DatabaseLook
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly FIzzBuzz_Ext.Data.FizzBuzzContext _context;
@@ -24,10 +26,10 @@ namespace FIzzBuzz_Ext.Pages.DatabaseLook
         public async Task OnGetAsync()
         {
             var FizzBuzzes = from x in _context.FizzBuzz 
-                             orderby x.Date descending 
+                             orderby x.Date descending
                              select x;
 
-            FizzBuzz = await FizzBuzzes.Take(10).ToListAsync();
+            FizzBuzz = await FizzBuzzes.Take(20).ToListAsync();
         }
     }
 }
